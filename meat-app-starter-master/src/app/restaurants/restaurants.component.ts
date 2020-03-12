@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Restaurant } from './restaurant/restaurant.model';
+import { RestaurantModel } from './restaurant/restaurant.model';
 import { RestaurantsService } from './restaurants.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { RestaurantsService } from './restaurants.service';
 })
 export class RestaurantsComponent implements OnInit {
 
-  restaurants: Restaurant[];
+  restaurants: RestaurantModel[];
 
   constructor(private restaurantsService: RestaurantsService) { }
 
