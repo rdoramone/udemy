@@ -4,9 +4,6 @@
 <section class="content">
   <section class="invoice">
 
-    {{form.valid}}
-    {{form.value | json}}
-
     <form #form="ngForm" novalidate>
       <div class="row">
         <div class="col-xs-12">
@@ -51,7 +48,6 @@
           (decreaseQty)="decreaseQty($event)"
           (remove)="remove($event)"
         ></mt-order-items>
-        <!-- /.col -->
       </div>
       <!-- /.row -->
 
@@ -74,14 +70,13 @@
             [itemsValue]="itemsValue()"
           ></mt-delivery-cost>
         </div>
-        <!-- /.col -->
       </div>
 
     </form>
 
     <div class="row">
       <div class="col-xs-12">
-        <button class="btn btn-success pull-right" [disabled]="form.invalid || cartItems().length === 0"><i class="fa fa-credit-card"></i> Concluir
+        <button (click)="checkOrder(form.value)" class="btn btn-success pull-right" [disabled]="form.invalid || cartItems().length === 0"><i class="fa fa-credit-card"></i> Concluir
           Pedido
         </button>
       </div>

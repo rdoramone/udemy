@@ -28,6 +28,7 @@ import { UserDetailsComponent } from './header/user-details/user-details.compone
 import { InputComponent } from './shared/input/input.component';
 import { RadioComponent } from './shared/radio/radio.component';
 import { OrderService } from './order/order.service';
+import { RatingComponent } from './shared/rating/rating.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { OrderService } from './order/order.service';
     LoginComponent,
     UserDetailsComponent,
     InputComponent,
-    RadioComponent
+    RadioComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
