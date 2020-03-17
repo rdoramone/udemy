@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
@@ -24,10 +23,8 @@ import { OrderItemsComponent } from './order/order-items/order-items.component';
 import { OrderSummaryComponent } from './order/order-summary/order-summary.component';
 import { LoginComponent } from './security/login/login.component';
 import { UserDetailsComponent } from './header/user-details/user-details.component';
-import { InputComponent } from './shared/input/input.component';
-import { RadioComponent } from './shared/radio/radio.component';
 import { OrderService } from './order/order.service';
-import { RatingComponent } from './shared/rating/rating.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -48,16 +45,12 @@ import { RatingComponent } from './shared/rating/rating.component';
     OrderItemsComponent,
     OrderSummaryComponent,
     LoginComponent,
-    UserDetailsComponent,
-    InputComponent,
-    RadioComponent,
-    RatingComponent
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule,
-    ReactiveFormsModule,
+    SharedModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
