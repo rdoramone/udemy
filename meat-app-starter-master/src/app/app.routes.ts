@@ -6,9 +6,8 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantsDetailsComponent } from './restaurants-details/restaurants-details.component';
 import { MenuComponent } from './restaurants-details/menu/menu.component';
 import { ReviewsComponent } from './restaurants-details/reviews/reviews.component';
-import { OrderComponent } from './order/order.component';
 import { OrderSummaryComponent } from './order/order-summary/order-summary.component';
-import { AboutModule } from './about/about.module';
+
 
 export const ROUTES: Routes = [
   {
@@ -44,7 +43,7 @@ export const ROUTES: Routes = [
   },
   {
     path: 'order',
-    component: OrderComponent
+    loadChildren: './order/order.module#OrderModule'
   },
   {
     path: 'order-summary',
