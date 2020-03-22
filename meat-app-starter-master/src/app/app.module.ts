@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ import { SharedModule } from './shared/shared.module';
     */
   ],
   providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }, // Usado para adicionar hash na url.
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
