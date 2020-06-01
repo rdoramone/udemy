@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { Http, Headers, RequestOptions } from "@angular/http";
-import { Observable } from "rxjs/Observable";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { ShoppingCartService } from "./../restaurants-details/shopping-cart/shopping-cart.service";
+import { ShoppingCartService } from './../restaurants-details/shopping-cart/shopping-cart.service';
 import { CartItem } from './../restaurants-details/shopping-cart/cart-item.model';
-import { Order } from "./order-item.model";
-import { MEAT_API } from "./../app.api";
+import { Order } from './order-item.model';
+import { MEAT_API } from './../app.api';
 
 @Injectable()
 export class OrderService {
   constructor(
     private cartService: ShoppingCartService,
-    private http: Http
+    private http: HttpClient
   ) { }
 
   cartItems(): CartItem[] {
@@ -40,14 +40,9 @@ export class OrderService {
   }
 
   checkOrder(order: Order): Observable<string> {
-    const headers = new Headers();
-    headers.append('Content-type', 'application/json');
     return this.http
-      .post(
-        `${MEAT_API}/orders`,
-        JSON.stringify(order),
-        new RequestOptions({ headers: headers }))
-      .map(response => response.json())
+      .post<Order>(`${MEAT_API}/orders`, order)
+      // tslint:disable-next-line: no-shadowed-variable
       .map(order => order.id);
   }
 }

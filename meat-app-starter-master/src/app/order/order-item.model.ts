@@ -4,7 +4,8 @@ class Order {
     public number: number,
     public complement: string,
     public paymentOptions: string,
-    public orderItens: OrderItem[] = []
+    public orderItens: OrderItem[] = [],
+    public id?: string
   ) { }
 }
 
