@@ -3,6 +3,7 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
@@ -41,6 +42,7 @@ import { SharedModule } from './shared/shared.module';
     UserDetailsComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpModule,
     SharedModule.forRoot(),

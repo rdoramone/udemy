@@ -14,8 +14,8 @@ import { ReviewsModel } from "./../restaurants-details/reviews/reviews.model";
 export class RestaurantsService {
  constructor(private http: Http) { }
 
- restaurants(): Observable<RestaurantModel[]> {
-   return this.http.get(`${MEAT_API}/restaurants`)
+ restaurants(search?: string): Observable<RestaurantModel[]> {
+   return this.http.get(`${MEAT_API}/restaurants`, { params: { q: search }})
     .map(response => response.json())
     .catch(ErrorHandler.handleError)
  }
