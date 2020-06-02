@@ -1,3 +1,4 @@
+import { LoggedInGuard } from './security/loggedin.guard';
 import { Routes } from '@angular/router'
 
 import { HomeComponent } from './home/home.component';
@@ -13,6 +14,10 @@ export const ROUTES: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'login/:to',
+    component: LoginComponent
   },
   {
     path: 'login',
@@ -47,7 +52,8 @@ export const ROUTES: Routes = [
   },
   {
     path: 'order',
-    loadChildren: './order/order.module#OrderModule'
+    loadChildren: './order/order.module#OrderModule',
+    canLoad: [ LoggedInGuard ]
   },
   {
     path: 'order-summary',
