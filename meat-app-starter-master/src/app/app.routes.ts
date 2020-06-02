@@ -7,12 +7,16 @@ import { RestaurantsDetailsComponent } from './restaurants-details/restaurants-d
 import { MenuComponent } from './restaurants-details/menu/menu.component';
 import { ReviewsComponent } from './restaurants-details/reviews/reviews.component';
 import { OrderSummaryComponent } from './order/order-summary/order-summary.component';
-
+import { LoginComponent } from './security/login/login.component';
 
 export const ROUTES: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'about',

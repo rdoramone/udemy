@@ -24,7 +24,6 @@ import { UserDetailsComponent } from './header/user-details/user-details.compone
 
 import { SharedModule } from './shared/shared.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +52,7 @@ import { SharedModule } from './shared/shared.module';
     */
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy }, // Usado para adicionar hash na url.
+    // { provide: LocationStrategy, useClass: HashLocationStrategy }, // Usado para adicionar hash na url.
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
