@@ -6,6 +6,7 @@ import { RadioOption } from './../shared/radio/radio-option.model';
 import { CartItem } from './../restaurants-details/shopping-cart/cart-item.model';
 import { OrderService } from './order.service';
 import { Order, OrderItem } from './order-item.model';
+import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'mt-order',
@@ -17,7 +18,9 @@ export class OrderComponent implements OnInit {
 
   numberPattern = /^[0-9]*$/;
 
-  delivery: number = 8;
+  delivery = 8;
+
+  orderId: string;
 
   orderForm: FormGroup;
 
@@ -84,10 +87,16 @@ export class OrderComponent implements OnInit {
     order.orderItens = this.cartItems().map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id));
     this.orderService
       .checkOrder(order)
-      .subscribe((orderId: string) => {
+      .do((orderId: string) => {
+        this.orderId = orderId
+      })
+      .subscribe(() => {
         this.router.navigate(['/order-summary'])
-
         this.orderService.clear();
       })
+  }
+
+  isOrderCompleted() {
+    return this.orderId !== undefined;
   }
 }
