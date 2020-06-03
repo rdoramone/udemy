@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -7,7 +7,6 @@ import { CartItem } from './../restaurants-details/shopping-cart/cart-item.model
 import { Order } from './order-item.model';
 import { MEAT_API } from './../app.api';
 import { ShoppingCartService } from './../restaurants-details/shopping-cart/shopping-cart.service';
-import { LoginService } from './../security/login/login.service';
 
 @Injectable()
 export class OrderService {

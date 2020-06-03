@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 
 import { RouterModule, PreloadAllModules } from '@angular/router';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -21,6 +20,7 @@ import { ShoppingCartComponent } from './restaurants-details/shopping-cart/shopp
 import { OrderSummaryComponent } from './order/order-summary/order-summary.component';
 import { LoginComponent } from './security/login/login.component';
 import { UserDetailsComponent } from './header/user-details/user-details.component';
+import { ApplicationErrorHandler } from './app.error-handler';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -53,7 +53,8 @@ import { SharedModule } from './shared/shared.module';
   ],
   providers: [
     // { provide: LocationStrategy, useClass: HashLocationStrategy }, // Usado para adicionar hash na url.
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: ErrorHandler, useClass: ApplicationErrorHandler }
   ],
   bootstrap: [AppComponent]
 })
