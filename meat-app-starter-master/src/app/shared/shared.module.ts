@@ -15,12 +15,14 @@ import { LoginService } from './../security/login/login.service';
 import { LoggedInGuard } from './../security/loggedin.guard';
 import { LeaveOrderGuard } from './../order/leave-order.guard';
 import { AuthInterceptor } from './../security/auth.interceptor';
+import { SnackbarComponent } from './messages/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
     InputComponent,
     RadioComponent,
-    RatingComponent
+    RatingComponent,
+    SnackbarComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { AuthInterceptor } from './../security/auth.interceptor';
     InputComponent,
     RadioComponent,
     RatingComponent,
+    SnackbarComponent,
     CommonModule,
     FormsModule,
     ReactiveFormsModule
