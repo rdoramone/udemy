@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
+import { tap } from 'rxjs/operators';
 
 import { RadioOption } from './../shared/radio/radio-option.model';
 import { CartItem } from './../restaurants-details/shopping-cart/cart-item.model';
 import { OrderService } from './order.service';
 import { Order, OrderItem } from './order-item.model';
-import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'mt-order',
@@ -87,12 +87,12 @@ export class OrderComponent implements OnInit {
 
   checkOrder(order: Order) {
     order.orderItens = this.cartItems().map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id));
+
     this.orderService
       .checkOrder(order)
-      .do((orderId: string) => {
-        this.orderId = orderId
-      })
-      .subscribe(() => {
+      .pipe(
+        tap((orderId: string) => this.orderId = orderId)
+      ).subscribe(() => {
         this.router.navigate(['/order-summary'])
         this.orderService.clear();
       })
