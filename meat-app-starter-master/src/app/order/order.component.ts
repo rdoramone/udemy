@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 
 import { RadioOption } from './../shared/radio/radio-option.model';
 import { CartItem } from './../restaurants-details/shopping-cart/cart-item.model';
@@ -13,15 +13,10 @@ import 'rxjs/add/operator/do';
   templateUrl: './order.component.html'
 })
 export class OrderComponent implements OnInit {
-
   emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-
   numberPattern = /^[0-9]*$/;
-
   delivery = 8;
-
   orderId: string;
-
   orderForm: FormGroup;
 
   paymentOptions: RadioOption[] = [
@@ -29,24 +24,6 @@ export class OrderComponent implements OnInit {
     { label: 'Cartão de Débito', value: 'DEB' },
     { label: 'Cartão de Refeição', value: 'REF' }
   ];
-
-  constructor(
-    private orderService: OrderService,
-    private router: Router,
-    private fb: FormBuilder
-  ) { }
-
-  ngOnInit() {
-    this.orderForm = this.fb.group({
-      name: this.fb.control('', [ Validators.required, Validators.minLength(5) ]),
-      email: this.fb.control('', [ Validators.required, Validators.pattern(this.emailPattern) ]),
-      emailConfirmation: this.fb.control('', [ Validators.required, Validators.pattern(this.emailPattern) ]),
-      address: this.fb.control('', [ Validators.required, Validators.minLength(5) ]),
-      number: this.fb.control('', [ Validators.required, Validators.minLength(1), Validators.pattern(this.numberPattern) ]),
-      complement: this.fb.control(''),
-      paymentOption: this.fb.control('', [ Validators.required ])
-    }, { validator: OrderComponent.equalsTo });
-  }
 
   static equalsTo(group: AbstractControl): {[key: string]: boolean} {
     const email = group.get('email');
@@ -61,6 +38,31 @@ export class OrderComponent implements OnInit {
     }
 
     return undefined;
+  }
+
+  constructor(
+    private orderService: OrderService,
+    private router: Router,
+    private fb: FormBuilder
+  ) { }
+
+  ngOnInit() {
+    this.orderForm = new FormGroup({
+      name: new FormControl('', {
+        validators: [ Validators.required, Validators.minLength(5) ]
+        // updateOn: 'blur'
+      }), // Com essa opção aplicada podemos ter a validação do campo name quando o campo perder o foco.
+      email: this.fb.control('', [ Validators.required, Validators.pattern(this.emailPattern) ]),
+      emailConfirmation: this.fb.control('', [ Validators.required, Validators.pattern(this.emailPattern) ]),
+      address: this.fb.control('', [ Validators.required, Validators.minLength(5) ]),
+      number: this.fb.control('', [ Validators.required, Validators.minLength(1), Validators.pattern(this.numberPattern) ]),
+      complement: this.fb.control(''),
+      paymentOption: this.fb.control('', [ Validators.required ])
+    }, { validators: [ OrderComponent.equalsTo ], updateOn: 'blur' });
+    /*
+      Aqui as validações do formulário serão aplicadas quando perderem o foco, ou seja,
+      foi aplicado a atualização dos campos a nível de formulário.
+    */
   }
 
   itemsValue(): number {
