@@ -4,6 +4,10 @@ import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt');
 
 import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
@@ -53,7 +57,7 @@ import { SharedModule } from './shared/shared.module';
   ],
   providers: [
     // { provide: LocationStrategy, useClass: HashLocationStrategy }, // Usado para adicionar hash na url.
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: LOCALE_ID, useValue: 'pt' },
     { provide: ErrorHandler, useClass: ApplicationErrorHandler }
   ],
   bootstrap: [AppComponent]
