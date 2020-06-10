@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CartItem } from 'app/restaurants-details/shopping-cart/cart-item.model';
+import { CartItem } from './../../restaurants-details/shopping-cart/cart-item.model';
 
 @Component({
   selector: 'mt-order-items',
