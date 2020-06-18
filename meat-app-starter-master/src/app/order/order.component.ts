@@ -57,7 +57,7 @@ export class OrderComponent implements OnInit {
       address: this.fb.control('', [ Validators.required, Validators.minLength(5) ]),
       number: this.fb.control('', [ Validators.required, Validators.minLength(1), Validators.pattern(this.numberPattern) ]),
       complement: this.fb.control(''),
-      paymentOption: this.fb.control('', [ Validators.required ])
+      paymentOption: new FormControl('', { validators: [Validators.required], updateOn: 'change' })
     }, { validators: [ OrderComponent.equalsTo ], updateOn: 'blur' });
     /*
       Aqui as validações do formulário serão aplicadas quando perderem o foco, ou seja,
