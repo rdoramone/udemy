@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShoppingCartComponent } from './shopping-cart.component';
+import { NotificationService } from './../../shared/messages/notification.service';
+import { ShoppingCartService } from './shopping-cart.service';
 
 describe('ShoppingCartComponent', () => {
   let component: ShoppingCartComponent;
@@ -8,7 +10,11 @@ describe('ShoppingCartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShoppingCartComponent ]
+      declarations: [ ShoppingCartComponent ],
+      providers: [
+        NotificationService,
+        ShoppingCartService
+      ]
     })
     .compileComponents();
   }));

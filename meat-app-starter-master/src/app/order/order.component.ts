@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  FormControl
+} from '@angular/forms';
 import { tap } from 'rxjs/operators';
 
 import { RadioOption } from './../shared/radio/radio-option.model';

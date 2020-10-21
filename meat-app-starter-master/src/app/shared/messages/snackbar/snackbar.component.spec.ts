@@ -1,6 +1,8 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SnackbarComponent } from './snackbar.component';
+import { NotificationService } from '../notification.service';
 
 describe('SnackbarComponent', () => {
   let component: SnackbarComponent;
@@ -8,9 +10,10 @@ describe('SnackbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SnackbarComponent ]
-    })
-    .compileComponents();
+      declarations: [ SnackbarComponent ],
+      imports: [ BrowserAnimationsModule ],
+      providers: [ NotificationService ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

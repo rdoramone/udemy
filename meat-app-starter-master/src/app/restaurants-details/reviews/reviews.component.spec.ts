@@ -1,6 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ReviewsComponent } from './reviews.component';
+import { RestaurantsService } from './../../restaurants/restaurants.service';
+import { ActivatedRoute } from '@angular/router';
+
+const routeStub = {
+  parent: {
+    snapshot: {
+      params: 'id'
+    }
+  }
+}
 
 describe('ReviewsComponent', () => {
   let component: ReviewsComponent;
@@ -8,9 +19,13 @@ describe('ReviewsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReviewsComponent ]
-    })
-    .compileComponents();
+      declarations: [ ReviewsComponent ],
+      imports: [ HttpClientTestingModule ],
+      providers: [
+        RestaurantsService,
+        { provide: ActivatedRoute, useValue: routeStub }
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

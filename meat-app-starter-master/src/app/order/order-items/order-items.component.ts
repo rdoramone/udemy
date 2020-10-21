@@ -6,7 +6,6 @@ import { CartItem } from './../../restaurants-details/shopping-cart/cart-item.mo
   templateUrl: './order-items.component.html'
 })
 export class OrderItemsComponent implements OnInit {
-
   @Input() items: CartItem[];
   @Output() increaseQty = new EventEmitter<CartItem>();
   @Output() decreaseQty = new EventEmitter<CartItem>();
@@ -14,8 +13,7 @@ export class OrderItemsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   emitIncreaseQty(item: CartItem) {
     this.increaseQty.emit(item);
@@ -24,6 +22,7 @@ export class OrderItemsComponent implements OnInit {
   emitDecreaseQty(item: CartItem) {
     this.decreaseQty.emit(item);
   }
+
   emitRemove(item: CartItem) {
     this.remove.emit(item);
   }

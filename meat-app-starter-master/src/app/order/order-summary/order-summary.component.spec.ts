@@ -1,20 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrderSummaryComponent } from './order-summary.component';
+import { RatingComponent } from './../../shared/rating/rating.component';
 
 describe('OrderSummaryComponent', () => {
   let component: OrderSummaryComponent;
-  let fixture: ComponentFixture<OrderSummaryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderSummaryComponent ]
-    })
-    .compileComponents();
+      declarations: [
+        OrderSummaryComponent,
+        RatingComponent
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OrderSummaryComponent);
+    const fixture: ComponentFixture<OrderSummaryComponent> = TestBed.createComponent(OrderSummaryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
